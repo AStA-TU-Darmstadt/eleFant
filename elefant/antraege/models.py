@@ -14,7 +14,7 @@ class Application(models.Model):  # Finanzantrag
 
     description = models.TextField(max_length=4000)  # Verwendungszweck
 
-    carsharing_data = models.ForeignKey('CarSharingData')  # car sharing
+    carsharing_data = models.ForeignKey('CarSharing')  # car sharing
 
     total_value = models.DecimalField(max_digits=11, decimal_places=2)  # allow applications up to 999 999 999.99€
 
@@ -54,3 +54,8 @@ class BankAccount(models.Model):
     iban = models.CharField(primary_key=True, max_length=34)
     bank = models.CharField(max_length=50)
     bic = models.CharField(max_length=11)
+
+
+class CarSharing(models.Model):
+    rental_duration = models.TimeField()
+    kilometres = models.SmallIntegerField()

@@ -1,22 +1,56 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class Application(models.Model):  # Finanzantrag
-    applicant = models.CharField(max_length=100)  # Antragsteller*in
-    contact = models.CharField(max_length=100)  # Ansprechpartner*in
-    contact_information = models.CharField(max_length=100)
-
-    number = models.CharField(primary_key=True, max_length=20)  # FA-Nummer
+    application_number = models.CharField(primary_key=True, max_length=20)  # FA-Nummer
     application_date = models.DateTimeField('date of application')  # Datum der Antragstellung
+
+    applicant = models.CharField(max_length=70)  # Antragsteller*in
+    contact = models.CharField(max_length=70)  # Ansprechpartner*in
+    contact_information = models.CharField(max_length=100)
 
     bank_account = models.ForeignKey('BankAccount', on_delete=models.PROTECT)
 
-    description = models.TextField(max_length=4000)
+    description = models.TextField(max_length=4000)  # Verwendungszweck
+
+    carsharing_data = models.ForeignKey('CarSharingData')  # car sharing
+
     total_value = models.DecimalField(max_digits=11, decimal_places=2)  # allow applications up to 999 999 999.99€
 
+    APPLIED = 'APP'
+    QUERIES = 'QUE'
+    APPROVED = 'APV'
+    DECLINED = 'DCL'
+    STATUS_CHOICES = (
+        (APPLIED, 'applied'),  # beantragt
+        (QUERIES, 'queries'),  # Rückfragen
+        (APPROVED, 'approved'),  # genehmigt
+        (DECLINED, 'declined'),  # abgelehnt
+    )
+
+    status = models.CharField(
+        max_length=3,
+        choices=STATUS_CHOICES,
+        default=APPLIED,
+    )
+
+    approval_date = models.DateTimeField('date of approval', blank=True)  # genehmigt am
+    approval_place = models.CharField('place of approval', max_length=70)  # genehmigt auf
+
+    budget_category = models.ForeignKey('BudgetCategory', on_delete=models.PROTECT)  # Haushaltstopf
+
     def __str__(self):
-        return self.number
+        return self.application_number
+
+    def clean(self):
+        # Don't allow unapproved entries to have an approval_date
+        if self.status != self.APPROVED and self.approval_date is not None:
+            raise ValidationError({'approval_date': _('Applications without approval may not hav an approval date.')})
 
 
 class BankAccount(models.Model):
+    account_holder = models.CharField(max_length=70)
     iban = models.CharField(primary_key=True, max_length=34)
+    bank = models.CharField(max_length=50)
+    bic = models.CharField(max_length=11)

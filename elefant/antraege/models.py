@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 from django.core.exceptions import ValidationError
 
 
@@ -16,7 +17,7 @@ class Application(models.Model):  # Finanzantrag
 
     carsharing_data = models.ForeignKey('CarSharing')  # car sharing
 
-    total_value = models.DecimalField(max_digits=11, decimal_places=2)  # allow applications up to 999 999 999.99€
+    total_amount = models.DecimalField(max_digits=11, decimal_places=2)  # allow applications up to 999 999 999.99€
 
     APPLIED = 'APP'
     QUERIES = 'QUE'
@@ -58,4 +59,13 @@ class BankAccount(models.Model):
 
 class CarSharing(models.Model):
     rental_duration = models.TimeField()
-    kilometres = models.SmallIntegerField()
+    kilometres = models.PositiveSmallIntegerField()
+
+
+class BudgetCategory(models.Model):
+    name = models.CharField(primary_key=True, max_length=70)
+    total_category_budget = models.DecimalField(max_digits=11, decimal_places=2)  # allow budgets up to 999 999 999.99€
+
+    def budget_left(self):
+        """Returns how much budget is left for this budget category."""
+        return self.total_category_budget - self.application_set.aggregate(Sum('total_amount'))

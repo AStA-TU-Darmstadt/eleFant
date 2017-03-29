@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 
 class Application(models.Model):  # Finanzantrag
@@ -58,8 +59,8 @@ class BankAccount(models.Model):
 
 
 class CarSharing(models.Model):
-    rental_duration = models.TimeField()
-    kilometres = models.PositiveSmallIntegerField()
+    rental_duration = models.TimeField()  # Leihdauer
+    kilometres = models.PositiveSmallIntegerField()  # Kilometeranzahl
 
 
 class BudgetCategory(models.Model):

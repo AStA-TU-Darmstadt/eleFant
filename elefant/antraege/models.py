@@ -65,8 +65,8 @@ class CarSharing(models.Model):
 
 class BudgetCategory(models.Model):
     name = models.CharField(primary_key=True, max_length=70)
-    total_category_budget = models.DecimalField(max_digits=11, decimal_places=2)  # allow budgets up to 999 999 999.99€
+    category_budget_total = models.DecimalField(max_digits=11, decimal_places=2)  # allow budgets up to 999 999 999.99€
 
     def budget_left(self):
         """Returns how much budget is left for this budget category."""
-        return self.total_category_budget - self.application_set.aggregate(Sum('total_amount'))
+        return self.category_budget_total - self.application_set.aggregate(Sum('total_amount'))

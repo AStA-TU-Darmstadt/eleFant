@@ -16,7 +16,7 @@ class Application(models.Model):  # Finanzantrag
 
     description = models.TextField(max_length=4000)  # Verwendungszweck
 
-    carsharing_data = models.ForeignKey('CarSharing')  # car sharing
+    carsharing_data = models.ForeignKey('CarSharing', blank=True)  # car sharing
 
     total_amount = models.DecimalField(max_digits=11, decimal_places=2)  # allow applications up to 999 999 999.99€
 
@@ -38,7 +38,7 @@ class Application(models.Model):  # Finanzantrag
     )
 
     approval_date = models.DateTimeField('date of approval', blank=True)  # genehmigt am
-    approval_place = models.CharField('place of approval', max_length=70)  # genehmigt auf
+    approval_place = models.CharField('place of approval', max_length=70, blank=True)  # genehmigt auf
 
     budget_category = models.ForeignKey('BudgetCategory', on_delete=models.PROTECT)  # Haushaltstopf
 

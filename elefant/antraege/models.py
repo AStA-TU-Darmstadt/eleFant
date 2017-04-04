@@ -9,7 +9,7 @@ class Application(models.Model):  # Finanzantrag
     application_date = models.DateTimeField('date of application')  # Datum der Antragstellung
 
     applicant = models.CharField(max_length=70)  # Antragsteller*in
-    contact = models.CharField(max_length=70)  # Ansprechpartner*in
+    contact = models.CharField(max_length=70, blank=True)  # Ansprechpartner*in
     contact_information = models.CharField(max_length=100)
 
     bank_account = models.ForeignKey('BankAccount', on_delete=models.PROTECT)

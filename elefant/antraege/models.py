@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Sum
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+from django.forms import ModelForm
 
 
 class Application(models.Model):  # Finanzantrag
@@ -74,3 +75,21 @@ class BudgetCategory(models.Model):
     def budget_left(self):
         """Returns how much budget is left for this budget category."""
         return self.category_budget_total - self.application_set.aggregate(Sum('total_amount'))
+
+
+class ApplicationForm(ModelForm):
+    class Meta:
+        model = Application
+        fields = ['applicant', 'contact', 'contact_information', 'description', 'total_amount']
+
+
+class BankAccountForm(ModelForm):
+    class Meta:
+        model = BankAccount
+        fields = ['account_holder', 'iban', 'bic', 'bank']
+
+
+class CarSharingForm(ModelForm):
+    class Meta:
+        model = CarSharing
+        fields = ['kilometres', 'rental_duration']

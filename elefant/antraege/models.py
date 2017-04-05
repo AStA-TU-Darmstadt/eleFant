@@ -46,9 +46,13 @@ class Application(models.Model):  # Finanzantrag
         return self.application_number
 
     def clean(self):
-        # Don't allow unapproved entries to have an approval_date
-        if self.status != self.APPROVED and self.approval_date is not None:
-            raise ValidationError({'approval_date': _('Applications without approval may not hav an approval date.')})
+        # Don't allow unapproved entries to have an approval_date or place
+        if self.status != self.APPROVED and (self.approval_date is not None or self.approval_place != ''):
+            raise ValidationError(
+                {'approval_date': _('Applications without approval may not have an approval date or place.')})
+        # Don't allow approved entries without approval_date or place
+        if self.status == self.APPROVED and (self.approval_date is None or self.approval_place == ''):
+            raise ValidationError({'status': _('Approved Applications must have an approval date and place.')})
 
 
 class BankAccount(models.Model):

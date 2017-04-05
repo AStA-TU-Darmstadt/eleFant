@@ -38,7 +38,7 @@ class Application(models.Model):  # Finanzantrag
     )
 
     approval_date = models.DateTimeField('date of approval', blank=True, null=True)  # genehmigt am
-    approval_place = models.CharField('place of approval', max_length=70, blank=True)  # genehmigt auf
+    approved_by = models.CharField(max_length=70, blank=True)  # genehmigt auf
 
     budget_category = models.ForeignKey('BudgetCategory', on_delete=models.PROTECT)  # Haushaltstopf
 
@@ -46,12 +46,12 @@ class Application(models.Model):  # Finanzantrag
         return self.application_number
 
     def clean(self):
-        # Don't allow unapproved entries to have an approval_date or place
-        if self.status != self.APPROVED and (self.approval_date is not None or self.approval_place != ''):
+        # Don't allow unapproved entries to have an approval_date or approved_by
+        if self.status != self.APPROVED and (self.approval_date is not None or self.approved_by != ''):
             raise ValidationError(
                 {'approval_date': _('Applications without approval may not have an approval date or place.')})
-        # Don't allow approved entries without approval_date or place
-        if self.status == self.APPROVED and (self.approval_date is None or self.approval_place == ''):
+        # Don't allow approved entries without approval_date or approved_by
+        if self.status == self.APPROVED and (self.approval_date is None or self.approved_by == ''):
             raise ValidationError({'status': _('Approved Applications must have an approval date and place.')})
 
 

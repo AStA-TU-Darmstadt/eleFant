@@ -5,7 +5,7 @@ from antraege.models import *
 
 def create_application(applicant, application_number, contact_information, bank_account, description,
                        total_amount, budget_category, contact='', carsharing_data=None, approval_date=None,
-                       approval_place='', status=Application.APPLIED):
+                       approved_by='', status=Application.APPLIED):
     time = timezone.now()
 
     return Application.objects.create(application_number=application_number
@@ -15,7 +15,7 @@ def create_application(applicant, application_number, contact_information, bank_
                                       description=description, carsharing_data=carsharing_data,
                                       total_amount=total_amount,
                                       status=status, budget_category=budget_category, approval_date=approval_date,
-                                      approval_place=approval_place)
+                                      approved_by=approved_by)
 
 
 def create_bank_account(account_holder, iban, bank, bic):
@@ -51,14 +51,14 @@ class ApplicationModelTests(TestCase):
         with self.assertRaises(ValidationError):
             application.clean()
 
-    def test_approved_without_approval_date_and_place(self):
+    def test_approved_without_approval_date_and_by(self):
         application = Application.objects.get(application_number='1')
         application.status = Application.APPROVED
         application.save()
         with self.assertRaises(ValidationError):
             application.clean()
 
-    def test_approved_without_approval_place(self):
+    def test_approved_without_approved_by(self):
         application = Application.objects.get(application_number='1')
         application.status = Application.APPROVED
         application.approval_date = timezone.now()

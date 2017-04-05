@@ -4,6 +4,10 @@
 # bower components
 **/bower_components/**
 
+# yarn stuff
+yarn.lock
+node_modules/**
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

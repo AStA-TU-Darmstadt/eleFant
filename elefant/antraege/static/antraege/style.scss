@@ -1,0 +1,42 @@
+$accent-color: #F78B26;
+$title-color: rgba(0, 0, 0, 0.8);
+$icon-color: rgba(255, 255, 255, 0.7);
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 900;
+}
+
+.mdl-navigation__link .material-icons {
+  font-size: 24px;
+  color: $icon-color;
+  margin-right: 15px;
+  margin-left: -5px;
+}
+
+.mdl-layout__header {
+  color: $title-color;
+}
+
+.mdl-layout__header .mdl-layout__drawer-button {
+  color: $title-color;
+}
+
+.demo-navigation {
+  flex-grow: 1;
+}
+
+.mdl-layout-title {
+  color: $title-color;
+}
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link:hover {
+  background-color: $accent-color;
+  color: white;
+}
+
+.logo {
+  width: 150px;
+  margin-left: 45px;
+  margin-top: 30px;
+}

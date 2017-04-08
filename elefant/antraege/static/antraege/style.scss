@@ -40,3 +40,11 @@ $icon-color: rgba(255, 255, 255, 0.7);
   margin-left: 45px;
   margin-top: 30px;
 }
+
+.mdl-button--raised.mdl-button--colored {
+  background: $accent-color;
+}
+
+.mdl-button--raised.mdl-button--colored:hover {
+  background: $accent-color;
+}

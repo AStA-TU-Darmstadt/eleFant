@@ -28,3 +28,9 @@
   width: 150px;
   margin-left: 45px;
   margin-top: 30px; }
+
+.mdl-button--raised.mdl-button--colored {
+  background: #F78B26; }
+
+.mdl-button--raised.mdl-button--colored:hover {
+  background: #F78B26; }

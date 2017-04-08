@@ -5,4 +5,5 @@ from . import views
 app_name = 'antraege'
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^new$', views.new_application, name='new'),
 ]

@@ -17,7 +17,7 @@ gulp.task('build', function () {
     );
     gulp.src(['node_modules/material-design-icons/iconfont/**', '!**/README.md'])
         .pipe(gulp.dest('antraege/static/antraege/material-design-icons/iconfont'));
-    gulp.src(['node_modules/material-design-lite/*.min.js', 'node_modules/material-design-lite/*.min.css'])
+    gulp.src(['node_modules/material-design-lite/*.min.js', 'node_modules/material-design-lite/*.min.css.map', 'node_modules/material-design-lite/*.min.css'])
         .pipe(gulp.dest('antraege/static/antraege/material-design-lite'))
 });
 

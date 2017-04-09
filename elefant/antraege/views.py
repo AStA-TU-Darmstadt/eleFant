@@ -30,7 +30,7 @@ def new_application(request):
                 bank_account_form = BankAccountForm(request.POST, instance=bank_account)
             except ObjectDoesNotExist:
                 pass
-            bank_account_form.save()
+            bank_account = bank_account_form.save()
 
             # generate initial value for the application
             application = Application(application_date=timezone.now(), bank_account=bank_account)

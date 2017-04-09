@@ -22,26 +22,12 @@
         <form action="{% url 'antraege:new' %}" method="post">
             {% csrf_token %}
             <div class="mdl-card__supporting-text">
-                {% for field in application_form %}
-                    <div class="fieldWrapper">
-                        {{ field.errors }}
-                        {{ field.label_tag }}
-                        {{ field }}
-                        {% if field.help_text %}
-                            <p class="help">{{ field.help_text|safe }}</p>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-                {% for field in bank_account_form %}
-                    <div class="fieldWrapper">
-                        {{ field.errors }}
-                        {{ field.label_tag }}
-                        {{ field }}
-                        {% if field.help_text %}
-                            <p class="help">{{ field.help_text|safe }}</p>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+                {% include "antraege/form_snippet.html" with form=application_form%}
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="sample3">
+                    <label class="mdl-textfield__label" for="sample3">Text...</label>
+                </div>
+                {% include "antraege/form_snippet.html" with form=bank_account_form%}
             </div>
             <div class="mdl-card__actions mdl-card--border">
                 <input type="submit"

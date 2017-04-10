@@ -22,16 +22,18 @@
         <form action="{% url 'antraege:new' %}" method="post">
             {% csrf_token %}
             <div class="mdl-card__supporting-text">
-                {% include "antraege/form_snippet.html" with form=application_form%}
+                {% include "antraege/form_snippet.html" with form=application_form %}
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" id="sample3">
                     <label class="mdl-textfield__label" for="sample3">Text...</label>
                 </div>
-                {% include "antraege/form_snippet.html" with form=bank_account_form%}
+                {% include "antraege/form_snippet.html" with form=bank_account_form %}
             </div>
             <div class="mdl-card__actions mdl-card--border">
-                <input type="submit"
-                       class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                <button type="submit"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                    Absenden
+                </button>
             </div>
         </form>
         <div class="mdl-card__menu">

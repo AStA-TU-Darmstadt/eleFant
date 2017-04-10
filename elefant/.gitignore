@@ -1,3 +1,6 @@
+# server configuration
+elefant/secret_settings.py
+
 # pycharm stuff
 .idea/**
 

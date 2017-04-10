@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.db.models import Sum
 from django.core.exceptions import ValidationError
@@ -6,12 +7,13 @@ from django.utils import timezone
 
 
 class Application(models.Model):  # Finanzantrag
-    application_number = models.CharField(primary_key=True, max_length=20)  # FA-Nummer
+    application_number = models.CharField(max_length=20)  # FA-Nummer
     application_date = models.DateTimeField('date of application')  # Datum der Antragstellung
+    reference_number = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # Referenznummer
 
     applicant = models.CharField(max_length=70)  # Antragsteller*in
     contact = models.CharField(max_length=70, blank=True)  # Ansprechpartner*in
-    contact_information = models.CharField(max_length=100)
+    e_mail = models.EmailField()  # E-Mail
 
     bank_account = models.ForeignKey('BankAccount', on_delete=models.PROTECT)
 

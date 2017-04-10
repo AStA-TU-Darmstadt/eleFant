@@ -5,7 +5,7 @@ from .models import *
 class ApplicationForm(ModelForm):
     class Meta:
         model = Application
-        fields = ['applicant', 'contact', 'contact_information', 'description', 'total_amount']
+        fields = ['applicant', 'contact', 'e_mail', 'description', 'total_amount']
 
 
 class BankAccountForm(ModelForm):

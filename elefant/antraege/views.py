@@ -1,7 +1,6 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.views import generic
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse
 
 from .forms import *
 

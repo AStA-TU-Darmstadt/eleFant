@@ -3,10 +3,10 @@
 
 $accent-color: #F78B26;
 $title-color: rgba(0, 0, 0, 0.8);
-$icon-color: rgba(255, 255, 255, 0.7);
+$icon-color: rgba(255, 255, 255, 1);
 
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 1);
   font-weight: 900;
 }
 
@@ -15,6 +15,7 @@ $icon-color: rgba(255, 255, 255, 0.7);
   color: $icon-color;
   margin-right: 15px;
   margin-left: -5px;
+  margin-top: -2px;
 }
 
 .mdl-layout__header {

@@ -45,3 +45,9 @@ def new_application(request):
         bank_account_form = BankAccountForm()
     return render(request, 'antraege/new_application.html',
                   {'application_form': application_form, 'bank_account_form': bank_account_form})
+
+
+class ApplicationDetail(generic.DetailView):
+    model = Application
+    context_object_name = 'application'
+    template_name = 'antraege/application_detail.html'

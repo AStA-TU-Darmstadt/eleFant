@@ -1,0 +1,43 @@
+{% extends "antraege/index.html" %}
+
+{% block content %}
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp"
+             style="max-width:700px; margin-top:50px;">
+        <div class="demo-card-wide mdl-card mdl-cell mdl-cell--12-col">
+            {% block application_details %}
+                <div class="mdl-card__title mdl-card--border">
+                    <h2 class="mdl-card__title-text">{{ application.application_number }}</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <h5 style="margin-top:0;">Antragsteller*in</h5>
+                    {{ application.applicant }}
+                    {% if application.contact %}
+                        <h5 class="">Kontakt</h5>
+                        {{ application.contact }}
+                    {% endif %}
+
+                    <h5 class="">E-Mail</h5>
+                    {{ application.e_mail }}
+                    <h5 class="">Beschreibung</h5>
+                    Ipsum quo veritatis ex placeat. Est exercitationem accusantium tempora deserunt quisquam. Qui modi
+                    commodi
+                    expedita id. Ut magnam deserunt quos harum vel voluptas ducimus.
+
+                    Est fuga qui nam reiciendis quisquam minus incidunt facere. Repudiandae consequuntur corporis
+                    similique
+                    omnis placeat ducimus adipisci ratione. Libero iusto est quia accusamus corporis accusantium magni.
+                    Distinctio aliquid eligendi voluptatem pariatur dolor earum. Ab non enim et minus maiores. Delectus
+                    commodi
+                    blanditiis ex.
+                    <h5 class="">Status</h5>
+                    {{ application.status }}
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                        Antrag bearbeiten
+                    </a>
+                </div>
+            {% endblock %}
+        </div>
+    </section>
+{% endblock %}

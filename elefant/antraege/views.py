@@ -1,5 +1,9 @@
+from uuid import UUID
+
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.views import generic
 
 from .forms import *
@@ -45,6 +49,17 @@ def new_application(request):
         bank_account_form = BankAccountForm()
     return render(request, 'antraege/new_application.html',
                   {'application_form': application_form, 'bank_account_form': bank_account_form})
+
+
+def search_application(request):
+    if request.method == 'POST':
+        try:
+            reference_number = UUID(request.POST['reference_number'])  # check if ref_nr is a valid uuid
+            if Application.objects.filter(pk=reference_number).exists():  # check if application with this ref_nr exists
+                return HttpResponseRedirect(reverse('antraege:detail', args=(reference_number,)))
+        except ValueError:
+            pass
+    return render(request, 'antraege/search_application.html')
 
 
 class ApplicationDetail(generic.DetailView):

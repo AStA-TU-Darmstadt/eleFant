@@ -40,9 +40,11 @@
             <img src="{% static 'antraege/images/logo.gif' %}" class="logo">
         </header>
         <nav class="demo-navigation mdl-navigation">
-            <a class="mdl-navigation__link" href="{% url 'antraege:new' %}"><i class="material-icons" role="presentation">description</i>Antrag
+            <a class="mdl-navigation__link" href="{% url 'antraege:new' %}"><i class="material-icons"
+                                                                               role="presentation">description</i>Antrag
                 stellen</a>
-            <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">find_in_page</i>Antrag
+            <a class="mdl-navigation__link" href="{% url 'antraege:search' %}"><i class="material-icons"
+                                                                                  role="presentation">find_in_page</i>Antrag
                 suchen</a>
             <div class="mdl-layout-spacer"></div>
             <a class="mdl-navigation__link" href="/admin"><i class="material-icons" role="presentation">person</i>Log-In</a>
@@ -50,7 +52,10 @@
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-200">
-        {% block content %}{% endblock %}
+        <section class="section--center mdl-grid mdl-grid--no-spacing"
+                 style="max-width:700px; margin-top:50px;">
+            {% block content %}{% endblock %}
+        </section>
     </main>
 </div>
 </body>

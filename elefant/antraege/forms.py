@@ -7,7 +7,7 @@ class ApplicationForm(ModelForm):
     class Meta:
         model = Application
         fields = ['applicant', 'contact', 'e_mail', 'description', 'total_amount']
-        localized_fields = ('total_amount',)
+        localized_fields = '__all__'
 
 
 class BankAccountForm(ModelForm):

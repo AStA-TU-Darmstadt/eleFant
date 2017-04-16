@@ -7,6 +7,7 @@
     </div>
     <form action="{% url 'antraege:new' %}" id="form-id" method="post">
         {% csrf_token %}
+        <!-- Antrag -->
         <div class="mdl-card__supporting-text mdl-card-border">
             {% include "antraege/mdl_field_snippet.html" with field=application_form.applicant name="Antragsteller*in" %}
             {% include "antraege/mdl_field_snippet.html" with field=application_form.contact name="Ansprechpartner*in" %}
@@ -21,20 +22,13 @@
                 <span class="mdl-textfield__error">{{ application_form.description.errors }}</span>
             </div>
         </div>
-        <hr/>
+        <!-- <hr style="opacity: 0.6"> -->
+        <!-- Bankdaten -->
         <div class="mdl-card--border mdl-card__supporting-text">
             {% include "antraege/mdl_field_snippet.html" with field=bank_account_form.account_holder name="Kontoinhaber*in" %}
-            {% include "antraege/mdl_field_snippet.html" with field=application_form.contact name="Ansprechpartner*in" %}
-            {% include "antraege/mdl_field_snippet.html" with field=application_form.e_mail name="E-Mail" %}
-            {% include "antraege/mdl_field_snippet.html" with field=application_form.total_amount name="Betrag" %}
-            <br/>
-            <!-- use a wider input box for the description field -->
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
-                <label for="{{ application_form.description.id_for_label }}"
-                       class="mdl-textfield__label">Verwendungszweck</label>
-                {{ application_form.description |add_class:"mdl-textfield__input" }}
-                <span class="mdl-textfield__error">{{ application_form.description.errors }}</span>
-            </div>
+            {% include "antraege/mdl_field_snippet.html" with field=bank_account_form.bank name="Kreditinstitut" %}
+            {% include "antraege/mdl_field_snippet.html" with field=bank_account_form.iban name="IBAN" %}
+            {% include "antraege/mdl_field_snippet.html" with field=bank_account_form.bic name="BIC" %}
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <button type="submit" id="submit-button"
@@ -48,7 +42,7 @@
         let requiredComponents = document.querySelectorAll("[required]");
         requiredComponents.forEach(function (e) {
             e.removeAttribute('required');
-        })
+        });
         // when submit button click, add required attribute back
         document.getElementById("submit-button").addEventListener("click", function () {
             requiredComponents.forEach(function (e) {

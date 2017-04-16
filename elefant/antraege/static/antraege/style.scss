@@ -101,3 +101,21 @@ $icon-color: rgba(255, 255, 255, 1);
   border-color: rgba(0, 0, 0, .26);
 }
 */
+
+// search field
+.searchfield {
+  width: 97%;
+  margin-left: 10px;
+  margin-right: 50px;
+  margin-top: 0;
+  margin-bottom: -10px;
+
+  label span {
+    position: absolute;
+    margin-top: 1px;
+  }
+
+  .mdl-textfield__label {
+    margin-top: -5px;
+  }
+}

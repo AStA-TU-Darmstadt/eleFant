@@ -13,12 +13,10 @@
                     <h5 class="">Kontakt</h5>
                     {{ application.contact }}
                 {% endif %}
-                <h5 class="">E-Mail</h5>
-                {{ application.e_mail }}
                 <h5 class="">Beschreibung</h5>
                 {{ application.description }}
                 <h5 class="">Betrag</h5>
-                {{ application.total_amount }}
+                {{ application.total_amount }}€
                 <h5 class="">Status</h5>
                 {% if application.get_status_display == 'applied' %}
                     beantragt

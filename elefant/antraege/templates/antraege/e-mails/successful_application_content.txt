@@ -1,0 +1,9 @@
+Dein Finanzantrag wurde erfolgreich gestellt!
+
+FA-Nummer: {{ application_number }}
+Referenznummer: {{ reference_number }}
+
+Unter folgendem Link kannst du den aktuellen Status abfragen: {{ url }}
+
+Viele Grüße
+Dein EleFAnt

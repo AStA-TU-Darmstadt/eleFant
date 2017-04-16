@@ -11,9 +11,11 @@ from .models import Application
 def successful_application_creation(instance, created, **kwargs):
     """ Sends an e-mail to the applicant, if a new application was successfully submitted. """
     mail_from = "EleFAnt <" + settings.EMAIL_HOST_USER + ">"
+    base_url = "elefant.julian-haas.de"
+    url = base_url + "/" + instance.reference_number
     content_params = {'application_number': instance.application_number,
                       'reference_number': instance.reference_number,
-                      'url': instance.reference_number}
+                      'url': url}
 
     if created:
         send_mail(

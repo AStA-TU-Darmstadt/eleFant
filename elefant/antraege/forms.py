@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+
 from .models import *
 
 
@@ -6,6 +7,7 @@ class ApplicationForm(ModelForm):
     class Meta:
         model = Application
         fields = ['applicant', 'contact', 'e_mail', 'description', 'total_amount']
+        localized_fields = ('total_amount',)
 
 
 class BankAccountForm(ModelForm):

@@ -13,22 +13,24 @@
                     <h5 class="">Kontakt</h5>
                     {{ application.contact }}
                 {% endif %}
-
                 <h5 class="">E-Mail</h5>
                 {{ application.e_mail }}
                 <h5 class="">Beschreibung</h5>
-                Ipsum quo veritatis ex placeat. Est exercitationem accusantium tempora deserunt quisquam. Qui modi
-                commodi
-                expedita id. Ut magnam deserunt quos harum vel voluptas ducimus.
-
-                Est fuga qui nam reiciendis quisquam minus incidunt facere. Repudiandae consequuntur corporis
-                similique
-                omnis placeat ducimus adipisci ratione. Libero iusto est quia accusamus corporis accusantium magni.
-                Distinctio aliquid eligendi voluptatem pariatur dolor earum. Ab non enim et minus maiores. Delectus
-                commodi
-                blanditiis ex.
+                {{ application.description }}
+                <h5 class="">Betrag</h5>
+                {{ application.total_amount }}
                 <h5 class="">Status</h5>
-                {{ application.status }}
+                {% if application.get_status_display == 'applied' %}
+                    beantragt
+                {% elif application.get_status_display == 'queries' %}
+                    offene Rückfragen
+                {% elif application.get_status_display == 'approved' %}
+                    genehmigt
+                {% elif application.get_status_display == 'declined' %}
+                    abgelehnt
+                {% else %}
+                    unbekannter Status
+                {% endif %}
             </div>
             <div class="mdl-card__actions mdl-card--border">
                 <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">

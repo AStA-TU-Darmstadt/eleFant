@@ -1,13 +1,14 @@
 import uuid
+
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Sum
-from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 
 
 class Application(models.Model):  # Finanzantrag
-    application_number = models.CharField(max_length=20)  # FA-Nummer
+    application_number = models.CharField(db_index=True, max_length=20)  # FA-Nummer
     application_date = models.DateTimeField('date of application')  # Datum der Antragstellung
     reference_number = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # Referenznummer
 

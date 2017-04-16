@@ -5,6 +5,7 @@ $accent-color: #F78B26;
 $title-color: rgba(0, 0, 0, 0.8);
 $icon-color: rgba(255, 255, 255, 1);
 
+// navigation
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
   color: rgba(255, 255, 255, 1);
   font-weight: 900;
@@ -18,20 +19,12 @@ $icon-color: rgba(255, 255, 255, 1);
   margin-top: -5px;
 }
 
-.mdl-layout__header {
-  color: $title-color;
-}
-
 .mdl-layout__header .mdl-layout__drawer-button {
   color: $title-color;
 }
 
 .demo-navigation {
   flex-grow: 1;
-}
-
-.mdl-layout-title {
-  color: $title-color;
 }
 
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link:hover {
@@ -46,28 +39,31 @@ $icon-color: rgba(255, 255, 255, 1);
   margin-bottom: 30px;
 }
 
+// mdl buttons
 .mdl-button--raised.mdl-button--colored {
   background: $accent-color;
+  color: rgb(255, 255, 255);
 }
 
 .mdl-button--raised.mdl-button--colored:hover {
-  background: $accent-color;
+  background-color: $accent-color;
 }
 
-.mdl-textfield .initial {
-  input {
+.mdl-button--raised.mdl-button--colored:active {
+  background-color: $accent-color;
+}
 
-  }
+.mdl-button--raised.mdl-button--colored:focus:not(:active) {
+  background-color: $accent-color;
+}
+
+.mdl-button--raised.mdl-button--colored .mdl-ripple {
+  background: rgb(255, 255, 255);
 }
 
 .mdl-textfield--floating-label.has-placeholder .mdl-textfield__label, .mdl-textfield--floating-label.is-dirty .mdl-textfield__label, .mdl-textfield--floating-label.is-focused .mdl-textfield__label {
   color: $accent-color;
   border-color: $accent-color;
-}
-
-.initial .mdl-textfield.is-invalid .mdl-textfield__input {
-  border-color: rgba(0, 0, 0, .26);
-  font-size: 16px;
 }
 
 .mdl-textfield__label:after {

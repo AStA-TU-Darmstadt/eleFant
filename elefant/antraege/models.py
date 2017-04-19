@@ -22,7 +22,7 @@ class Application(models.Model):  # Finanzantrag
 
     carsharing_data = models.ForeignKey('CarSharing', blank=True, null=True)  # car sharing
 
-    total_amount = models.DecimalField(max_digits=11, decimal_places=2)  # allow applications up to 999 999 999.99€
+    total_amount = models.DecimalField(max_digits=11, decimal_places=2)  # allow applications up to 999 999 999.99euro
 
     APPLIED = 'APP'
     QUERIES = 'QUE'
@@ -30,7 +30,7 @@ class Application(models.Model):  # Finanzantrag
     DECLINED = 'DCL'
     STATUS_CHOICES = (
         (APPLIED, 'applied'),  # beantragt
-        (QUERIES, 'queries'),  # Rückfragen
+        (QUERIES, 'queries'),  # Rueckfragen
         (APPROVED, 'approved'),  # genehmigt
         (DECLINED, 'declined'),  # abgelehnt
     )
@@ -89,7 +89,7 @@ class CarSharing(models.Model):
 
 class BudgetCategory(models.Model):
     name = models.CharField(primary_key=True, max_length=70)
-    category_budget_total = models.DecimalField(max_digits=11, decimal_places=2)  # allow budgets up to 999 999 999.99€
+    category_budget_total = models.DecimalField(max_digits=11, decimal_places=2)  # allow budgets up to 999 999 999.99euro
 
     def __str__(self):
         return self.name

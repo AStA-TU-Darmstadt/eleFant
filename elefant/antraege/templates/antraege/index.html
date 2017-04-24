@@ -12,28 +12,9 @@
 </head>
 
 <body>
-<!-- The drawer is always open in large screens. The header is always shown,
-  even in small screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
-    <!-- <header class="mdl-layout__header mdl-color--grey-200">
-        <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">EleFAnt</span>
-            <div class="mdl-layout-spacer"></div>
-            <!--
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                  mdl-textfield--floating-label mdl-textfield--align-right">
-                <label class="mdl-button mdl-js-button mdl-button--icon"
-                       for="fixed-header-drawer-exp">
-                    <i class="material-icons">search</i>
-                </label>
-                <div class="mdl-textfield__expandable-holder">
-                    <input class="mdl-textfield__input" type="text" name="sample"
-                           id="fixed-header-drawer-exp">
-                </div>
-            </div>
-            --
-        </div>
-    </header>-->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="mdl-layout__header mdl-layout__header--transparent mdl-color--grey-200">
+    </header>
     <!-- mdl-color--blue-grey-800 -->
     <div class="mdl-layout__drawer mdl-color--blue-grey-800">
         <header class="demo-drawer-header">
@@ -53,7 +34,7 @@
     </div>
     <main class="mdl-layout__content mdl-color--grey-200">
         <section class="section--center mdl-grid mdl-grid--no-spacing"
-                 style="max-width:700px; margin-top:50px; margin-bottom:50px;">
+                 style="max-width:700px; margin-bottom:0px;">
             {% block content %}{% endblock %}
         </section>
     </main>

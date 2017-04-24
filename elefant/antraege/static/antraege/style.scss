@@ -6,9 +6,13 @@ $title-color: rgba(0, 0, 0, 0.8);
 $icon-color: rgba(255, 255, 255, 1);
 
 // navigation
-.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
-  color: rgba(255, 255, 255, 1);
-  font-weight: 900;
+.mdl-layout__drawer {
+  border-right: 0px;
+
+  .mdl-navigation .mdl-navigation__link {
+    color: rgba(255, 255, 255, 1);
+    font-weight: 900;
+  }
 }
 
 .mdl-navigation__link .material-icons {
@@ -35,7 +39,7 @@ $icon-color: rgba(255, 255, 255, 1);
 .logo {
   width: 150px;
   margin-left: 45px;
-  margin-top: 50px;
+  margin-top: 64px;
   margin-bottom: 30px;
 }
 

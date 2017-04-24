@@ -1,6 +1,7 @@
 from uuid import UUID
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.forms import modelform_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -67,7 +68,7 @@ class ApplicationCreate(generic.CreateView):
     fields = ['applicant', 'contact', 'e_mail', 'description', 'total_amount']
 
     # generate empty bank account form
-    bank_account_form = BankAccountForm()
+    bank_account_form = modelform_factory(BankAccount, fields="__all__")
 
     def get_context_data(self, **kwargs):
         # add bank account form to the context to make it usable in the template
@@ -86,9 +87,9 @@ class ApplicationCreate(generic.CreateView):
         try:
             # check if this bank account is already in the system
             bank_account = BankAccount.objects.get(iban=request.POST['iban'])
-            self.bank_account_form = BankAccountForm(request.POST, instance=bank_account)
+            self.bank_account_form = self.bank_account_form(request.POST, instance=bank_account)
         except ObjectDoesNotExist:
-            self.bank_account_form = BankAccountForm(self.request.POST)
+            self.bank_account_form = self.bank_account_form(request.POST)
 
         if self.bank_account_form.is_valid():
             # proceed with standard implementation

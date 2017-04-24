@@ -59,6 +59,10 @@ class Application(models.Model):  # Finanzantrag
         if self.status == self.APPROVED and (self.approval_date is None or self.approved_by == ''):
             raise ValidationError({'status': _('Approved Applications must have an approval date and place.')})
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('antraege:detail', args=[str(self.pk)])
+
     def generate_application_number(self, number=None):
         """Generates the application number for new applications. Should only be called once upon creation."""
         # get year
@@ -89,7 +93,8 @@ class CarSharing(models.Model):
 
 class BudgetCategory(models.Model):
     name = models.CharField(primary_key=True, max_length=70)
-    category_budget_total = models.DecimalField(max_digits=11, decimal_places=2)  # allow budgets up to 999 999 999.99euro
+    category_budget_total = models.DecimalField(max_digits=11,
+                                                decimal_places=2)  # allow budgets up to 999 999 999.99euro
 
     def __str__(self):
         return self.name

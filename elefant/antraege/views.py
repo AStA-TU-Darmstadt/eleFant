@@ -2,7 +2,7 @@ from uuid import UUID
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 
@@ -33,7 +33,7 @@ def new_application(request):
                 bank_account_form = BankAccountForm(request.POST, instance=bank_account)
             except ObjectDoesNotExist:
                 pass
-            bank_account = bank_account_form.save()
+            bank_account = bank_account_form.save()  # this validates the form
 
             # generate initial value for the application
             application = Application(application_date=timezone.now(), bank_account=bank_account)
@@ -47,7 +47,7 @@ def new_application(request):
         # if a GET (or any other method) we'll create a blank form
         application_form = ApplicationForm()
         bank_account_form = BankAccountForm()
-    return render(request, 'antraege/new_application.html',
+    return render(request, 'antraege/application_form.html',
                   {'application_form': application_form, 'bank_account_form': bank_account_form})
 
 
@@ -62,7 +62,67 @@ def search_application(request):
     return render(request, 'antraege/search_application.html')
 
 
+class ApplicationCreate(generic.CreateView):
+    model = Application
+    fields = ['applicant', 'contact', 'e_mail', 'description', 'total_amount']
+
+    # generate empty bank account form
+    bank_account_form = BankAccountForm()
+
+    def get_context_data(self, **kwargs):
+        # add bank account form to the context to make it usable in the template
+        context = super(ApplicationCreate, self).get_context_data(**kwargs)
+        context['bank_account_form'] = self.bank_account_form
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handles POST requests, instantiating a form instance and its inline
+        formsets with the passed POST variables and then checking them for
+        validity.
+        """
+        # process bank_account form
+        try:
+            # check if this bank account is already in the system
+            bank_account = BankAccount.objects.get(iban=request.POST['iban'])
+            self.bank_account_form = BankAccountForm(request.POST, instance=bank_account)
+        except ObjectDoesNotExist:
+            self.bank_account_form = BankAccountForm(self.request.POST)
+
+        if self.bank_account_form.is_valid():
+            # proceed with standard implementation
+            return super(ApplicationCreate, self).post(self, request, *args, **kwargs)
+        else:
+            return super(ApplicationCreate, self).form_invalid(self.get_form())
+
+    def form_valid(self, form):
+        # save bank account
+        bank_account = self.bank_account_form.save()
+
+        # generate initial values for the new application
+        # noinspection PyAttributeOutsideInit
+        self.object = Application(application_date=timezone.now(), bank_account=bank_account)
+        self.object.generate_application_number()
+        form = self.get_form()
+        form.instance = self.object
+
+        return super(ApplicationCreate, self).form_valid(form)
+
+
 class ApplicationDetail(generic.DetailView):
     model = Application
     context_object_name = 'application'
-    template_name = 'antraege/application_detail.html'
+
+
+class ApplicationEdit(generic.UpdateView):
+    template_name = 'antraege/application_form.html'
+    model = Application
+    form_class = ApplicationForm
+
+    def get_context_data(self, **kwargs):
+        # add application_number to context as headline
+        context = super(ApplicationEdit, self).get_context_data(**kwargs)
+        application_number = get_object_or_404(Application, pk=self.kwargs.get('pk')).application_number
+        context['headline'] = application_number
+        return context

@@ -10,6 +10,13 @@ class ApplicationForm(ModelForm):
         localized_fields = '__all__'
 
 
+class ApplicationFormAll(ModelForm):
+    class Meta:
+        model = Application
+        exclude = ['application_date']
+        localized_fields = '__all__'
+
+
 class BankAccountForm(ModelForm):
     class Meta:
         model = BankAccount

@@ -116,6 +116,10 @@ class ApplicationDetail(generic.DetailView):
     context_object_name = 'application'
 
 
+class ApplicationList(generic.ListView):
+    model = Application
+
+
 class ApplicationEdit(generic.UpdateView):
     template_name = 'antraege/application_form.html'
     model = Application

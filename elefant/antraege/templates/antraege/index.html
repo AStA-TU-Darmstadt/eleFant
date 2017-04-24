@@ -12,15 +12,20 @@
 </head>
 
 <body>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-    <header class="mdl-layout__header mdl-layout__header--transparent mdl-color--grey-200">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+    <!--
+    <header class="mdl-layout__header mdl-layout__header--transparent mdl-color--orange">
     </header>
+    -->
     <!-- mdl-color--blue-grey-800 -->
     <div class="mdl-layout__drawer mdl-color--blue-grey-800">
         <header class="demo-drawer-header">
             <img src="{% static 'antraege/images/logo.gif' %}" class="logo">
         </header>
         <nav class="demo-navigation mdl-navigation">
+            <a class="mdl-navigation__link" href="{% url 'antraege:list' %}"><i class="material-icons"
+                                                                                role="presentation">format_list_bulleted</i>Alle
+                Anträge</a>
             <a class="mdl-navigation__link" href="{% url 'antraege:new' %}"><i class="material-icons"
                                                                                role="presentation">description</i>Antrag
                 stellen</a>
@@ -33,8 +38,13 @@
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-200">
+        <!-- display a header on small screens -->
+        <div class="small-screen-header mdl-layout__header-row"
+             style="width:100%; height:56px; position:fixed; margin-bottom: 45px; z-index: 3;">
+            <span class="mdl-layout-title">EleFAnt</span>
+        </div>
         <section class="section--center mdl-grid mdl-grid--no-spacing"
-                 style="max-width:700px; margin-bottom:0px;">
+                 style="max-width:700px; margin-top:70px; margin-bottom: 60px;">
             {% block content %}{% endblock %}
         </section>
     </main>

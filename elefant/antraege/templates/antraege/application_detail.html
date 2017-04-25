@@ -12,13 +12,26 @@
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 {% if application.contact %}
-                    <h5 style="margin-top: 0;">Kontakt</h5>
+                    <h5 style="margin-top: 0;">Ansprechpartner*in</h5>
                     {{ application.contact }}
                 {% endif %}
             </div>
             <div class="mdl-cell mdl-cell--6-col">
+                <h5>E-Mail</h5>
+                {{ application.e_mail }}
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
                 <h5 class="">Betrag</h5>
                 {{ application.total_amount }}€
+            </div>
+            <!-- use wider area for the description -->
+            <div class="mdl-cell mdl-cell--12-col">
+                <h5 class="">Beschreibung</h5>
+                {{ application.description }}
+            </div>
+            <div class="mdl-cell mdl-cell--6-col">
+                <h5 class="">Haushaltstopf</h5>
+                {{ application.budget_category }}
             </div>
             <div class="mdl-cell mdl-cell--6-col">
                 <h5 class="">Status</h5>
@@ -35,10 +48,6 @@
                         unbekannter Status
                     {% endif %}
                 </b>
-            </div>
-            <div class="mdl-cell mdl-cell--12-col">
-                <h5 class="">Beschreibung</h5>
-                {{ application.description }}
             </div>
         </div>
         <div class="mdl-card__actions mdl-card--border">

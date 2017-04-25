@@ -23,11 +23,21 @@
                 <br/>
                 <!-- use a wider input box for the description field -->
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
-                    <label for="{{ orm.description.id_for_label }}"
+                    <label for="{{ form.description.id_for_label }}"
                            class="mdl-textfield__label">Verwendungszweck</label>
                     {{ form.description |add_class:"mdl-textfield__input" }}
                     <span class="mdl-textfield__error">{{ form.description.errors }}</span>
                 </div>
+                {{ form.budget_category }}
+                {% if form.status %}
+                    <select name="status" id="id_status">
+                        <option value="APP" {% if form.status.value == "APP" %} selected{% endif %}>beantragt</option>
+                        <option value="QUE" {% if form.status.value == "QUE" %} selected{% endif %}>Rückfragen</option>
+                        <option value="APV" {% if form.status.value == "APV" %} selected{% endif %}>angenommen</option>
+                        <option value="DCL" {% if form.status.value == "DCL" %} selected{% endif %}>abgelehnt</option>
+                    </select>
+                    <p>{{ form.status.errors }}</p>
+                {% endif %}
             </div>
             <!-- <hr style="opacity: 0.6"> -->
             <!-- Bankdaten -->
@@ -42,7 +52,7 @@
             <div class="mdl-card__actions mdl-card--border">
                 <button type="submit" id="submit-button"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
-                    Absenden
+                    Speichern
                 </button>
             </div>
         </form>

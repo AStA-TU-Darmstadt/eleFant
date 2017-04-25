@@ -22,10 +22,13 @@
         <header class="demo-drawer-header">
             <img src="{% static 'antraege/images/logo.gif' %}" class="logo">
         </header>
+        <!-- navigation -->
         <nav class="demo-navigation mdl-navigation">
-            <a class="mdl-navigation__link" href="{% url 'antraege:list' %}"><i class="material-icons"
-                                                                                role="presentation">format_list_bulleted</i>Alle
-                Anträge</a>
+            {% if user.is_authenticated %}
+                <a class="mdl-navigation__link" href="{% url 'antraege:list' %}"><i class="material-icons"
+                                                                                    role="presentation">format_list_bulleted</i>Alle
+                    Anträge</a>
+            {% endif %}
             <a class="mdl-navigation__link" href="{% url 'antraege:new' %}"><i class="material-icons"
                                                                                role="presentation">description</i>Antrag
                 stellen</a>
@@ -33,7 +36,14 @@
                                                                                   role="presentation">find_in_page</i>Antrag
                 suchen</a>
             <div class="mdl-layout-spacer"></div>
-            <a class="mdl-navigation__link" href="/admin"><i class="material-icons" role="presentation">person</i>Log-In</a>
+            {% if user.is_authenticated %}
+                <a class="mdl-navigation__link" href="{% url 'antraege:logout' %}?next={{ request.path }}"><i
+                        class="material-icons" role="presentation">person</i>Log-Out</a>
+            {% else %}
+                <a class="mdl-navigation__link" href="{% url 'antraege:login' %}?next={{ request.path }}"><i
+                        class="material-icons"
+                        role="presentation">person</i>Log-In</a>
+            {% endif %}
             <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">info</i>Impressum</a>
         </nav>
     </div>

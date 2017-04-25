@@ -1,5 +1,6 @@
 from uuid import UUID
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import modelform_factory
 from django.http import HttpResponseRedirect
@@ -116,14 +117,22 @@ class ApplicationDetail(generic.DetailView):
     context_object_name = 'application'
 
 
-class ApplicationList(generic.ListView):
+class ApplicationList(LoginRequiredMixin, generic.ListView):
     model = Application
+    login_url = '/login'
+
+
+def application_edit_handler(request, pk):
+    # allow logged in users to edit more fields
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('antraege:edit_admin', args=(pk,)))
+    else:
+        return HttpResponseRedirect(reverse('antraege:edit_user', args=(pk,)))
 
 
 class ApplicationEdit(generic.UpdateView):
-    template_name = 'antraege/application_form.html'
     model = Application
-    form_class = ApplicationForm
+    fields = ['applicant', 'contact', 'e_mail', 'description', 'total_amount']
 
     def get_context_data(self, **kwargs):
         # add application_number to context as headline
@@ -131,3 +140,12 @@ class ApplicationEdit(generic.UpdateView):
         application_number = get_object_or_404(Application, pk=self.kwargs.get('pk')).application_number
         context['headline'] = application_number
         return context
+
+
+class ApplicationEditAll(LoginRequiredMixin, ApplicationEdit):
+    login_url = '/login'
+
+    def __init__(self):
+        super(ApplicationEditAll, self).__init__()
+        # add fields which should be editable by logged in users
+        self.fields += ['status', 'budget_category']

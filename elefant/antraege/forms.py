@@ -20,7 +20,7 @@ class ApplicationFormAll(ModelForm):
 class BankAccountForm(ModelForm):
     class Meta:
         model = BankAccount
-        fields = ['account_holder', 'iban', 'bic', 'bank']
+        fields = ['account_holder', 'iban', 'bank']
 
 
 class CarSharingForm(ModelForm):

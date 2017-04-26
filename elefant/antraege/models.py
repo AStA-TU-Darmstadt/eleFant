@@ -80,7 +80,6 @@ class BankAccount(models.Model):
     account_holder = models.CharField(max_length=70)
     iban = models.CharField(primary_key=True, max_length=34)
     bank = models.CharField(max_length=50)
-    bic = models.CharField(max_length=11)
 
     def __str__(self):
         return self.iban

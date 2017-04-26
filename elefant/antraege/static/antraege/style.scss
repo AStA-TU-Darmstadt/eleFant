@@ -1,11 +1,56 @@
-/*noinspection CssUnknownTarget*/
+// material design lite
 @import "material-design-lite/material";
 
+// Roboto Slab stuff
+$FontPath: 'fonts/roboto-slab/fonts';
+@import "fonts/roboto-slab/roboto-slab";
+
+// variables
 $accent-color: #F78B26;
 $main-color: #37474f;
 $background-color: #eee !important;
 $title-color: rgba(0, 0, 0, 0.8);
 $icon-color: rgba(255, 255, 255, 1);
+
+$main-font: 'Raleway', sans-serif;
+$headline-font: 'Roboto Slab', serif;
+
+// fonts
+h2 {
+  font-family: $headline-font;
+  font-weight: 700 !important;
+}
+
+h5 {
+  font-family: $headline-font;
+}
+
+.mdl-navigation__link {
+  font-family: $main-font;
+  font-size: 15px;
+}
+
+.mdl-layout__title {
+  font-family: $headline-font;
+}
+
+body {
+  font-family: $main-font;
+}
+
+.mdl-data-table th {
+  font-family: $headline-font;
+  font-size: 14px;
+}
+
+.mdl-textfield__input {
+  font-family: $main-font;
+}
+
+.mdl-button {
+  font-family: $main-font;
+  font-weight: 900;
+}
 
 // header
 .mdl-layout__header {
@@ -54,8 +99,7 @@ $icon-color: rgba(255, 255, 255, 1);
   margin-bottom: 30px;
 }
 
-// small-screen layout
-.is-small-screen {
+.is-small-screen { // only show header on small screens
   .mdl-layout__header {
     display: block;
   }
@@ -71,7 +115,7 @@ $icon-color: rgba(255, 255, 255, 1);
   }
 }
 
-// content
+// main content
 .mdl-layout__content {
   background-color: $background-color;
 }
@@ -120,41 +164,7 @@ $icon-color: rgba(255, 255, 255, 1);
   background-color: $accent-color;
 }
 
-/*
-.mdl-textfield.is-invalid .mdl-textfield__label:after .initial {
-  background-color: $accent-color;
-}
-
-.initial .mdl-textfield.is-invalid .mdl-textfield__input {
-  border-color: rgba(0, 0, 0, .12);
-}
-
-.mdl-textfield.is-invalid .mdl-textfield__label:after {
-  background-color: $accent-color;
-}
-
-.mdl-textfield--floating-label.is-invalid .mdl-textfield__label {
-  color: rgba(0, 0, 0, .26);
-  font-size: 16px;
-}
-
-.mdl-textfield--floating-label.is-invalid .mdl-textfield__label:after {
-  color: $accent-color;
-  font-size: 16px;
-}
-
-.mdl-textfield.is-invalid .mdl-textfield__input {
-  border-color: rgba(0, 0, 0, .26);
-}
-*/
-
 // mdl cards
-.mdl-card__supporting-text {
-  h5 {
-    //display: inline-block;
-  }
-}
-
 .inner-grid {
   margin: 0 0 0 0;
 }

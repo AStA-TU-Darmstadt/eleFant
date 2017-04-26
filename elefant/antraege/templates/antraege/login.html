@@ -4,14 +4,18 @@
     <div class="demo-card-wide mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp" style="min-height: 0">
         <form action="" id="form-id" method="post">
             {% csrf_token %}
-            <div class="mdl-card__supporting-text">
-                {% include "antraege/mdl_field_snippet.html" with field=form.username name="Nutzer*innenname" %}
-                {% include "antraege/mdl_field_snippet.html" with field=form.password name="Passwort" %}
-
+            <div class="mdl-card__supporting-text mdl-grid" style="padding: 0">
+                <div class="mdl-cell mdl-cell--6-col">
+                    {% include "antraege/mdl_field_snippet.html" with field=form.username name="Nutzer*innenname" %}
+                </div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    {% include "antraege/mdl_field_snippet.html" with field=form.password name="Passwort" %}
+                </div>
             </div>
             <div class="mdl-card__actions mdl-card--border">
                 <button type="submit" id="submit-button"
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"
+                        style="margin-left:26px">
                     Login
                 </button>
             </div>

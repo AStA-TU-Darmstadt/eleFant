@@ -9,8 +9,7 @@ var merge = require('merge-stream');
 
 gulp.task('default', function () {
     return runSequence(
-        'build',
-        'build-clean'
+        'build'
     );
 });
 
@@ -26,7 +25,11 @@ gulp.task('install-deps', function () {
         .pipe(gulp.dest('antraege/static/antraege/material-design-icons/iconfont'));
     var mdl_js = gulp.src('node_modules/material-design-lite/*.min.js') // install mdl js
         .pipe(gulp.dest('antraege/static/antraege/material-design-lite'));
-    return merge(icons, mdl_js);
+    var roboto = gulp.src(['node_modules/roboto-slab-fontface-kit/**/*.ttf', 'node_modules/roboto-slab-fontface-kit/**/*.woff*', 'node_modules/roboto-slab-fontface-kit/**/*.scss']) // install roboto slab
+        .pipe(gulp.dest('antraege/static/antraege/fonts/roboto-slab'));
+    var raleway = gulp.src(['node_modules/typeface-raleway/*/*.eot', 'node_modules/typeface-raleway/**/*.woff*', 'node_modules/typeface-raleway/**/*.svg']) // install roboto slab
+        .pipe(gulp.dest('antraege/static/antraege/fonts/raleway/'));
+    return merge(icons, mdl_js, roboto, raleway);
 });
 
 gulp.task('install-build-deps', function () {

@@ -148,4 +148,4 @@ class ApplicationEditAll(LoginRequiredMixin, ApplicationEdit):
     def __init__(self):
         super(ApplicationEditAll, self).__init__()
         # add fields which should be editable by logged in users
-        self.fields += ['status', 'budget_category']
+        self.fields = ['applicant', 'contact', 'e_mail', 'description', 'total_amount', 'status', 'budget_category']

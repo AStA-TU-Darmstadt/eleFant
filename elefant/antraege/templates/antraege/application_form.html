@@ -28,8 +28,14 @@
                     {{ form.description |add_class:"mdl-textfield__input" }}
                     <span class="mdl-textfield__error">{{ form.description.errors }}</span>
                 </div>
-                {{ form.budget_category }}
-                {% if form.status %}
+                <!-- admin area -->
+                {% if user.is_authenticated %}
+                    <label for="{{ form.budget_category.id_for_label }}">Haushaltstopf</label>
+                    <br/>
+                    {{ form.budget_category }}
+                    <br/><br/>
+                    <label for="id_status">Status</label>
+                    <br/>
                     <select name="status" id="id_status">
                         <option value="APP" {% if form.status.value == "APP" %} selected{% endif %}>beantragt</option>
                         <option value="QUE" {% if form.status.value == "QUE" %} selected{% endif %}>Rückfragen</option>

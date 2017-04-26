@@ -88,6 +88,16 @@ body {
   margin-top: -4px;
 }
 
+.is-small-screen {
+  .mdl-navigation__link .material-icons {
+    font-size: 24px;
+    color: $icon-color;
+    margin-right: 15px;
+    margin-left: 26px;
+    margin-top: -4px;
+  }
+}
+
 .demo-navigation {
   flex-grow: 1;
 }

@@ -2,41 +2,39 @@
 @import "material-design-lite/material";
 
 $accent-color: #F78B26;
-$background-color: #37474f;
+$main-color: #37474f;
+$background-color: #eee !important;
 $title-color: rgba(0, 0, 0, 0.8);
 $icon-color: rgba(255, 255, 255, 1);
+
+// header
+.mdl-layout__header {
+  display: none;
+  background-color: $main-color;
+}
 
 // navigation
 .mdl-layout__drawer {
   border-right: 0;
+  background-color: $main-color;
 
-  .mdl-navigation .mdl-navigation__link {
-    color: rgba(255, 255, 255, 1);
-    font-weight: 900;
-  }
-}
+  .mdl-navigation {
+    .mdl-navigation__link {
+      color: $icon-color;
+      font-weight: 900;
+    }
 
-// header
-.small-screen-header {
-  display: none;
-}
-
-.is-small-screen {
-  .small-screen-header {
-    background-color: $background-color !important;
-    display: block;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-    .mdl-layout-title {
-      padding: 18px 0 0 0;
+    .mdl-navigation__link:hover {
+      background-color: $accent-color;
       color: white;
     }
   }
-
 }
 
 .mdl-layout__drawer-button {
   color: white !important;
 }
+
 .mdl-navigation__link .material-icons {
   font-size: 24px;
   color: $icon-color;
@@ -45,17 +43,8 @@ $icon-color: rgba(255, 255, 255, 1);
   margin-top: -5px;
 }
 
-.mdl-layout__header .mdl-layout__drawer-button {
-  color: $title-color;
-}
-
 .demo-navigation {
   flex-grow: 1;
-}
-
-.mdl-layout__drawer .mdl-navigation .mdl-navigation__link:hover {
-  background-color: $accent-color;
-  color: white;
 }
 
 .logo {
@@ -63,6 +52,41 @@ $icon-color: rgba(255, 255, 255, 1);
   margin-left: 45px;
   margin-top: 70px;
   margin-bottom: 30px;
+}
+
+// small-screen layout
+.is-small-screen {
+  .mdl-layout__header {
+    display: block;
+  }
+
+  .small-screen-header {
+    background-color: $main-color !important;
+    display: block;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    .mdl-layout-title {
+      padding: 18px 0 0 0;
+      color: white;
+    }
+  }
+}
+
+// content
+.mdl-layout__content {
+  background-color: $background-color;
+}
+
+.main-section {
+  max-width: 700px;
+  margin-top: 70px;
+  margin-bottom: 60px;
+}
+
+.is-small-screen {
+  .main-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 // mdl buttons and textfields

@@ -4,7 +4,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>EleFAnt</title>
     <script src="{% static 'antraege/material-design-lite/material.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'antraege/material-design-icons/iconfont/material-icons.css' %}">
@@ -12,14 +15,15 @@
 </head>
 
 <body>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
-    <!--
-    <header class="mdl-layout__header mdl-layout__header--transparent mdl-color--orange">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout-icon"></div>
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout__title">EleFAnt</span>
+        </div>
     </header>
-    -->
-    <!-- mdl-color--blue-grey-800 -->
-    <div class="mdl-layout__drawer mdl-color--blue-grey-800">
-        <header class="demo-drawer-header">
+    <div class="mdl-layout__drawer">
+        <header>
             <img src="{% static 'antraege/images/logo.gif' %}" class="logo">
         </header>
         <!-- navigation -->
@@ -47,14 +51,8 @@
             <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">info</i>Impressum</a>
         </nav>
     </div>
-    <main class="mdl-layout__content mdl-color--grey-200">
-        <!-- display a header on small screens -->
-        <div class="small-screen-header mdl-layout__header-row"
-             style="width:100%; height:56px; position:fixed; margin-bottom: 45px; z-index: 3;">
-            <span class="mdl-layout-title">EleFAnt</span>
-        </div>
-        <section class="section--center mdl-grid mdl-grid--no-spacing"
-                 style="max-width:700px; margin-top:70px; margin-bottom: 60px;">
+    <main class="mdl-layout__content">
+        <section class="main-section section--center mdl-grid mdl-grid--no-spacing">
             {% block content %}{% endblock %}
         </section>
     </main>

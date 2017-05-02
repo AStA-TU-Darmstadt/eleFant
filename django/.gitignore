@@ -1,5 +1,5 @@
 # server configuration
-django_project/secret_settings.py
+django_project/example_project
 
 # pycharm stuff
 .idea/**

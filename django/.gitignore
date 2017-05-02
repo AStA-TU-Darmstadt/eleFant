@@ -1,5 +1,6 @@
 # server configuration
 example_project
+manage.py
 
 # pycharm stuff
 .idea/**

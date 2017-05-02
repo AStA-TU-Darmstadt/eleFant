@@ -13,6 +13,7 @@ $title-color: rgba(0, 0, 0, 0.8);
 $icon-color: rgba(255, 255, 255, 1);
 
 $main-font: 'Raleway', sans-serif;
+$main-font-weight: 500;
 $headline-font: 'Roboto Slab', serif;
 
 // fonts
@@ -307,6 +308,15 @@ h5 {
 
 body {
   font-family: $main-font;
+  font-weight: $main-font-weight;
+}
+
+.mdl-card {
+  font-weight: $main-font-weight;
+}
+
+p {
+  font-weight: $main-font-weight;
 }
 
 .mdl-data-table th {

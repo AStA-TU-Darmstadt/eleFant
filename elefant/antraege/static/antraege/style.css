@@ -12038,7 +12038,14 @@ h5 {
   font-family: "Roboto Slab", serif; }
 
 body {
-  font-family: "Raleway", sans-serif; }
+  font-family: "Raleway", sans-serif;
+  font-weight: 500; }
+
+.mdl-card {
+  font-weight: 500; }
+
+p {
+  font-weight: 500; }
 
 .mdl-data-table th {
   font-family: "Roboto Slab", serif;

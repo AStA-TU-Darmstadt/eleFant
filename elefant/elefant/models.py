@@ -61,7 +61,7 @@ class Application(models.Model):  # Finanzantrag
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('antraege:detail', args=[str(self.pk)])
+        return reverse('elefant:detail', args=[str(self.pk)])
 
     def generate_application_number(self, number=None):
         """Generates the application number for new applications. Should only be called once upon creation."""

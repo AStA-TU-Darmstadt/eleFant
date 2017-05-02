@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from antraege.models import *
+from elefant.models import *
 
 
 def create_application(applicant, application_number, contact_information, bank_account, description,

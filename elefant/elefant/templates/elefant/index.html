@@ -9,9 +9,9 @@
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>EleFAnt</title>
-    <script src="{% static 'antraege/material-design-lite/material.min.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'antraege/material-design-icons/material-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'antraege/style.min.css' %}">
+    <script src="{% static 'elefant/material-design-lite/material.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'elefant/material-design-icons/material-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'elefant/style.min.css' %}">
 </head>
 
 <body>
@@ -24,27 +24,27 @@
     </header>
     <div class="mdl-layout__drawer">
         <header>
-            <img src="{% static 'antraege/images/elefant2.gif' %}" class="logo">
+            <img src="{% static 'elefant/images/elefant2.gif' %}" class="logo">
         </header>
         <!-- navigation -->
         <nav class="demo-navigation mdl-navigation">
             {% if user.is_authenticated %}
-                <a class="mdl-navigation__link" href="{% url 'antraege:list' %}"><i class="material-icons"
+                <a class="mdl-navigation__link" href="{% url 'elefant:list' %}"><i class="material-icons"
                                                                                     role="presentation">format_list_bulleted</i>Alle
                     Anträge</a>
             {% endif %}
-            <a class="mdl-navigation__link" href="{% url 'antraege:new' %}"><i class="material-icons"
+            <a class="mdl-navigation__link" href="{% url 'elefant:new' %}"><i class="material-icons"
                                                                                role="presentation">description</i>Antrag
                 stellen</a>
-            <a class="mdl-navigation__link" href="{% url 'antraege:search' %}"><i class="material-icons"
+            <a class="mdl-navigation__link" href="{% url 'elefant:search' %}"><i class="material-icons"
                                                                                   role="presentation">find_in_page</i>Antrag
                 suchen</a>
             <div class="mdl-layout-spacer"></div>
             {% if user.is_authenticated %}
-                <a class="mdl-navigation__link" href="{% url 'antraege:logout' %}?next={{ request.path }}"><i
+                <a class="mdl-navigation__link" href="{% url 'elefant:logout' %}?next={{ request.path }}"><i
                         class="material-icons" role="presentation">person</i>Log-Out</a>
             {% else %}
-                <a class="mdl-navigation__link" href="{% url 'antraege:login' %}?next={{ request.path }}"><i
+                <a class="mdl-navigation__link" href="{% url 'elefant:login' %}?next={{ request.path }}"><i
                         class="material-icons"
                         role="presentation">person</i>Log-In</a>
             {% endif %}

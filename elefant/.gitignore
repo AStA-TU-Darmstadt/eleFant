@@ -1,5 +1,5 @@
 # server configuration
-elefant/secret_settings.py
+django_project/secret_settings.py
 
 # pycharm stuff
 .idea/**

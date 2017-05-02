@@ -1,8 +1,8 @@
-{% extends "antraege/index.html" %}
+{% extends "elefant/index.html" %}
 
 {% block content %}
     <div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp" style="background-color:white;">
-        <form action="{% url 'antraege:search' %}" method="post">
+        <form action="{% url 'elefant:search' %}" method="post">
             {% csrf_token %}
 
             <div class="mdl-textfield mdl-js-textfield searchfield" style="">

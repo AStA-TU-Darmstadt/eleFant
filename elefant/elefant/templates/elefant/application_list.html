@@ -1,4 +1,4 @@
-{% extends "antraege/index.html" %}
+{% extends "elefant/index.html" %}
 
 {% block content %}
     <div class="demo-card-wide mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
@@ -14,7 +14,7 @@
                 <tbody>
                 {% for application in object_list %}
                     <!-- make table rows clickable -->
-                    <tr onclick="window.document.location='{% url 'antraege:detail' pk=application.pk %}';"
+                    <tr onclick="window.document.location='{% url 'elefant:detail' pk=application.pk %}';"
                         style="cursor: pointer;">
                         <td class="mdl-data-table__cell--non-numeric">{{ application.application_number }}</td>
                         <td class="mdl-data-table__cell--non-numeric">{{ application.applicant }}</td>

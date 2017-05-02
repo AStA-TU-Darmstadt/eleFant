@@ -21,9 +21,9 @@ def successful_application_creation(instance, created, **kwargs):
 
     if created:
         send_mail(
-            render_to_string('antraege/e-mails/successful_application_subject.txt'),
+            render_to_string('elefant/e-mails/successful_application_subject.txt'),
             # generate e-mail content using the reference number
-            render_to_string('antraege/e-mails/successful_application_content.txt', content_params),
+            render_to_string('elefant/e-mails/successful_application_content.txt', content_params),
             mail_from,
             [instance.e_mail],
             fail_silently=False,

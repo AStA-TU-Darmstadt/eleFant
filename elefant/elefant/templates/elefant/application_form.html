@@ -1,4 +1,4 @@
-{% extends "antraege/index.html" %}
+{% extends "elefant/index.html" %}
 {% load widget_tweaks %}
 
 {% block content %}
@@ -16,10 +16,10 @@
             {% csrf_token %}
             <!-- Antrag -->
             <div class="mdl-card__supporting-text mdl-card-border">
-                {% include "antraege/mdl_field_snippet.html" with field=form.applicant name="Antragsteller*in" %}
-                {% include "antraege/mdl_field_snippet.html" with field=form.contact name="Ansprechpartner*in" %}
-                {% include "antraege/mdl_field_snippet.html" with field=form.e_mail name="E-Mail" %}
-                {% include "antraege/mdl_field_snippet.html" with field=form.total_amount name="Betrag" %}
+                {% include "elefant/mdl_field_snippet.html" with field=form.applicant name="Antragsteller*in" %}
+                {% include "elefant/mdl_field_snippet.html" with field=form.contact name="Ansprechpartner*in" %}
+                {% include "elefant/mdl_field_snippet.html" with field=form.e_mail name="E-Mail" %}
+                {% include "elefant/mdl_field_snippet.html" with field=form.total_amount name="Betrag" %}
                 <br/>
                 <!-- use a wider input box for the description field -->
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
@@ -49,9 +49,9 @@
             <!-- Bankdaten -->
             {% if bank_account_form %}
                 <div class="mdl-card--border mdl-card__supporting-text">
-                    {% include "antraege/mdl_field_snippet.html" with field=bank_account_form.account_holder name="Kontoinhaber*in" %}
-                    {% include "antraege/mdl_field_snippet.html" with field=bank_account_form.bank name="Kreditinstitut" %}
-                    {% include "antraege/mdl_field_snippet.html" with field=bank_account_form.iban name="IBAN" %}
+                    {% include "elefant/mdl_field_snippet.html" with field=bank_account_form.account_holder name="Kontoinhaber*in" %}
+                    {% include "elefant/mdl_field_snippet.html" with field=bank_account_form.bank name="Kreditinstitut" %}
+                    {% include "elefant/mdl_field_snippet.html" with field=bank_account_form.iban name="IBAN" %}
                 </div>
             {% endif %}
             <div class="mdl-card__actions mdl-card--border">

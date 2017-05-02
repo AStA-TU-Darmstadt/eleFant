@@ -1,8 +1,8 @@
 from django.apps import AppConfig
 
 
-class AntraegeConfig(AppConfig):
-    name = 'antraege'
+class ElefantConfig(AppConfig):
+    name = 'elefant'
 
     # noinspection PyUnresolvedReferences
     def ready(self):

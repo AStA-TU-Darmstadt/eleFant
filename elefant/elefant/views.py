@@ -12,7 +12,7 @@ from .forms import *
 
 
 class IndexView(generic.ListView):
-    template_name = 'antraege/index.html'
+    template_name = 'elefant/index.html'
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
@@ -43,13 +43,13 @@ def new_application(request):
 
             application_form = ApplicationForm(request.POST, instance=application)
             application_form.save()
-            return render(request, 'antraege/submitted_successfully.html',
+            return render(request, 'elefant/submitted_successfully.html',
                           {'application_form': application_form, 'bank_account_form': bank_account_form})
     else:
         # if a GET (or any other method) we'll create a blank form
         application_form = ApplicationForm()
         bank_account_form = BankAccountForm()
-    return render(request, 'antraege/application_form.html',
+    return render(request, 'elefant/application_form.html',
                   {'application_form': application_form, 'bank_account_form': bank_account_form})
 
 
@@ -58,10 +58,10 @@ def search_application(request):
         try:
             reference_number = UUID(request.POST['reference_number'])  # check if ref_nr is a valid uuid
             if Application.objects.filter(pk=reference_number).exists():  # check if application with this ref_nr exists
-                return HttpResponseRedirect(reverse('antraege:detail', args=(reference_number,)))
+                return HttpResponseRedirect(reverse('elefant:detail', args=(reference_number,)))
         except ValueError:
             pass
-    return render(request, 'antraege/search_application.html')
+    return render(request, 'elefant/search_application.html')
 
 
 class ApplicationCreate(generic.CreateView):
@@ -125,9 +125,9 @@ class ApplicationList(LoginRequiredMixin, generic.ListView):
 def application_edit_handler(request, pk):
     # allow logged in users to edit more fields
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('antraege:edit_admin', args=(pk,)))
+        return HttpResponseRedirect(reverse('elefant:edit_admin', args=(pk,)))
     else:
-        return HttpResponseRedirect(reverse('antraege:edit_user', args=(pk,)))
+        return HttpResponseRedirect(reverse('elefant:edit_user', args=(pk,)))
 
 
 class ApplicationEdit(generic.UpdateView):

@@ -21,24 +21,24 @@ gulp.task('build-clean', function () {
 });
 
 gulp.task('install-deps', function () {
-    var icons = gulp.src(['node_modules/material-design-icons/iconfont/**', '!**/README.md']) // install icons
-        .pipe(gulp.dest('antraege/static/antraege/material-design-icons/iconfont'));
-    var mdl_js = gulp.src('node_modules/material-design-lite/*.min.js') // install mdl js
+    var icons = gulp.src(['node_modules/material-design-icons/iconfont/**', '!**/README.md', 'node_modules/material-design-icons/LICENSE']) // install icons
+        .pipe(gulp.dest('antraege/static/antraege/material-design-icons'));
+    var mdl_js = gulp.src(['node_modules/material-design-lite/*.min.js', 'node_modules/material-design-lite/LICENSE']) // install mdl js
         .pipe(gulp.dest('antraege/static/antraege/material-design-lite'));
     var roboto = gulp.src(['node_modules/roboto-slab-fontface-kit/**/*.ttf', 'node_modules/roboto-slab-fontface-kit/**/*.woff*', 'node_modules/roboto-slab-fontface-kit/**/*.scss']) // install roboto slab
         .pipe(gulp.dest('antraege/static/antraege/fonts/roboto-slab'));
     var raleway = gulp.src(['node_modules/typeface-raleway/*/*.eot', 'node_modules/typeface-raleway/**/*.woff*', 'node_modules/typeface-raleway/**/*.svg']) // install roboto slab
-        .pipe(gulp.dest('antraege/static/antraege/fonts/raleway/'));
+        .pipe(gulp.dest('antraege/static/antraege/fonts/raleway'));
     return merge(icons, mdl_js, roboto, raleway);
 });
 
-gulp.task('install-build-deps', function () {
-    return gulp.src('node_modules/material-design-lite/material.css') // install mdl css
+gulp.task('install-sass-build-deps', function () {
+    return mdl_css = gulp.src('node_modules/material-design-lite/material.css') // install mdl css
         .pipe(rename("_material.scss"))
         .pipe(gulp.dest('antraege/static/antraege/material-design-lite'));
 });
 
-gulp.task('sass', ['install-build-deps'], function () {
+gulp.task('sass', ['install-sass-build-deps'], function () {
     return gulp.src('antraege/static/antraege/*.scss') // build sass
         .pipe(sass())
         .pipe(gulp.dest('antraege/static/antraege'))

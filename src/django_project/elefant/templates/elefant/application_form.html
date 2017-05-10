@@ -1,0 +1,86 @@
+{% extends "elefant/index.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="demo-card-wide mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+        <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">
+                {% if headline %}
+                    {{ headline }}
+                {% else %}
+                    Neuer Antrag
+                {% endif %}
+            </h2>
+        </div>
+        <form action="" id="form-id" method="post">
+            {% csrf_token %}
+            <!-- Antrag -->
+            <div class="mdl-card__supporting-text mdl-card-border">
+                {% include "elefant/mdl_field_snippet.html" with field=form.applicant name="Antragsteller*in" %}
+                {% include "elefant/mdl_field_snippet.html" with field=form.contact name="Ansprechpartner*in" %}
+                {% include "elefant/mdl_field_snippet.html" with field=form.e_mail name="E-Mail" %}
+                {% include "elefant/mdl_field_snippet.html" with field=form.total_amount name="Betrag" %}
+                <br/>
+                <!-- use a wider input box for the description field -->
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
+                    <label for="{{ form.description.id_for_label }}"
+                           class="mdl-textfield__label">Verwendungszweck</label>
+                    {{ form.description |add_class:"mdl-textfield__input" }}
+                    <span class="mdl-textfield__error">{{ form.description.errors }}</span>
+                </div>
+                <!-- admin area -->
+                {% if user.is_authenticated %}
+                    <label for="{{ form.budget_category.id_for_label }}">Haushaltstopf</label>
+                    <br/>
+                    {{ form.budget_category }}
+                    <br/><br/>
+                    <label for="id_status">Status</label>
+                    <br/>
+                    <select name="status" id="id_status">
+                        <option value="APP" {% if form.status.value == "APP" %} selected{% endif %}>beantragt</option>
+                        <option value="QUE" {% if form.status.value == "QUE" %} selected{% endif %}>Rückfragen</option>
+                        <option value="APV" {% if form.status.value == "APV" %} selected{% endif %}>angenommen</option>
+                        <option value="DCL" {% if form.status.value == "DCL" %} selected{% endif %}>abgelehnt</option>
+                    </select>
+                    <p>{{ form.status.errors }}</p>
+                {% endif %}
+            </div>
+            <hr style="opacity: 0.6">
+            <!-- Bankdaten -->
+            {% if bank_account_form %}
+                <div class="mdl-card--border mdl-card__supporting-text">
+                    {% include "elefant/mdl_field_snippet.html" with field=bank_account_form.account_holder name="Kontoinhaber*in" %}
+                    {% include "elefant/mdl_field_snippet.html" with field=bank_account_form.bank name="Kreditinstitut" %}
+                    {% include "elefant/mdl_field_snippet.html" with field=bank_account_form.iban name="IBAN" %}
+                </div>
+            {% endif %}
+            <div class="mdl-card__actions mdl-card--border">
+                <button type="submit" id="submit-button"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                    Speichern
+                </button>
+            </div>
+        </form>
+        <!--
+        <script>
+            // this is needed to prevent empty fields from being marked as invalid
+            let requiredComponents = document.querySelectorAll("[required]");
+            requiredComponents.forEach(function (e) {
+                e.removeAttribute('required');
+            });
+            // when submit button click, add required attribute back
+            document.getElementById("submit-button").addEventListener("click", function () {
+                requiredComponents.forEach(function (e) {
+                    e.setAttribute('required', true)
+                })
+            });
+            // also when form submit event
+            document.getElementById("form-id").addEventListener("submit", function () {
+                requiredComponents.forEach(function (e) {
+                    e.setAttribute('required', true)
+                })
+            });
+        </script>
+        -->
+    </div>
+{% endblock %}

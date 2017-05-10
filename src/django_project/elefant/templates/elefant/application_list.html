@@ -1,0 +1,48 @@
+{% extends "elefant/index.html" %}
+
+{% block content %}
+    <div class="demo-card-wide mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+        <div class="mdl-card__supporting-text mdl-card-border" style="width: 100%; padding: 0 0 0 0">
+            <table class="mdl-data-table mdl-js-data-table" style="width: 100%">
+                <thead>
+                <th class="mdl-data-table__cell--non-numeric">FA-Nummer</th>
+                <th class="mdl-data-table__cell--non-numeric">Antragsteller*in</th>
+                <th class="mdl-data-table__cell--non-numeric">Haushaltstopf</th>
+                <th>Betrag</th>
+                <th class="mdl-data-table__cell--non-numeric">Status</th>
+                </thead>
+                <tbody>
+                {% for application in object_list %}
+                    <!-- make table rows clickable -->
+                    <tr onclick="window.document.location='{% url 'elefant:detail' pk=application.pk %}';"
+                        style="cursor: pointer;">
+                        <td class="mdl-data-table__cell--non-numeric">{{ application.application_number }}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{ application.applicant }}</td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            {% if application.budget_category %}
+                                {{ application.budget_category }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>{{ application.total_amount }}€</td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            {% if application.get_status_display == 'applied' %}
+                                beantragt
+                            {% elif application.get_status_display == 'queries' %}
+                                Rückfragen
+                            {% elif application.get_status_display == 'approved' %}
+                                genehmigt
+                            {% elif application.get_status_display == 'declined' %}
+                                abgelehnt
+                            {% else %}
+                                unbekannter Status
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -4,4 +4,5 @@ package.json
 yarn.lock
 .gitignore
 django_project
-**/.secret_key.py
+**/secret_key.py
+manage.py

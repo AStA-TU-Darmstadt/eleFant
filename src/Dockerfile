@@ -21,4 +21,6 @@ ADD docker_files/run.sh .
 RUN apt-get update && apt-get install -y \
         nginx-extras \
         uwsgi \
-        uwsgi-plugin-python3
+        uwsgi-plugin-python3 \
+        # needed to check for database connection:
+        netcat

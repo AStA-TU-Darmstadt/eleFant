@@ -2,6 +2,7 @@
 django_project
 manage.py
 **/secret_key.py
+.env
 
 # pycharm stuff
 .idea/**

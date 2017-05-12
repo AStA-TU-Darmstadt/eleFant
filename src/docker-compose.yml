@@ -7,6 +7,9 @@
      environment:
       - DEBUG
       - PORT
+      - LANGUAGE_CODE
+      - TIMEZONE
+      - ALLOWED_HOSTS
      # docker hack to make the web container start after the db container is ready.
      command: bash -c "while ! nc -w 1 -z db 5432; do sleep 0.1; done; ./run.sh;"
      ports:

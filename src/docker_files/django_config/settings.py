@@ -3,7 +3,7 @@ This is the default settings template for new EleFAnt installations.
 Custom parameters are passed via the docker-compose command as environment variables
 """
 
-import os
+import os, re
 from django.utils.crypto import get_random_string
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -29,7 +29,8 @@ except ImportError:
     from .secret_key import SECRET_KEY
 
 DEBUG = 'True' == os.environ.get('DEBUG')
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', ['*'])
+# allowed hosts list can be seperated by comma, whitespace or both
+ALLOWED_HOSTS = re.split(', | |,', os.environ.get('ALLOWED_HOSTS', '*'))
 
 # Application definition
 INSTALLED_APPS = [
@@ -121,3 +122,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# E-mail Settings

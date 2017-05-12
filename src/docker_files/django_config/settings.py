@@ -12,6 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Collect static files in a single directory
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
+
 def generate_secret_key(path):
     """Generate a new secret_key file for new installations"""
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
@@ -124,3 +125,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # E-mail Settings
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'localhost')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = 'True' == os.environ.get('EMAIL_USE_TLS', 'False')
+if not EMAIL_USE_TLS:
+    EMAIL_USE_SSL = 'True' == os.environ.get('EMAIL_USE_SSL', 'True')
+EMAIL_SSL_CERTFILE = os.environ.get('EMAIL_SSL_CERTFILE')
+EMAIL_SSL_KEYFILE = os.environ.get('EMAIL_SSL_KEYFILE')

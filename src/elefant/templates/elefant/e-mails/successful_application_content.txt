@@ -6,4 +6,4 @@ Referenznummer: {{ reference_number }}
 Unter folgendem Link kannst du den aktuellen Status abfragen: {{ url }}
 
 Viele Grüße
-Dein EleFAnt
+Dein eleFant

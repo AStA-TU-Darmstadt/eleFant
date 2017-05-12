@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
+from django.urls import reverse
 
 from .models import Application
 
@@ -12,9 +13,9 @@ from .models import Application
 @receiver(post_save, sender=Application, dispatch_uid="creation_email_receiver")
 def successful_application_creation(instance, created, **kwargs):
     """ Sends an e-mail to the applicant, if a new application was successfully submitted. """
-    mail_from = "EleFAnt <" + settings.EMAIL_HOST_USER + ">"
-    base_url = "elefant.julian-haas.de"
-    url = base_url + "/" + str(instance.reference_number)
+    mail_from = "eleFant <" + settings.EMAIL_HOST_USER + ">"
+    base_url = settings.ALLOWED_HOSTS[0]
+    url = "http://" + base_url + reverse('elefant:detail', args=[str(instance.pk)])
     content_params = {'application_number': str(instance.application_number),
                       'reference_number': str(instance.reference_number),
                       'url': url}

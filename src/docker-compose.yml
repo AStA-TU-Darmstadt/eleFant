@@ -5,11 +5,19 @@
    web:
      build: .
      environment:
-      - DEBUG
       - PORT
+      - EMAIL_HOST_USER
+      - EMAIL_HOST_PASSWORD
+      - ALLOWED_HOSTS
+      - DEBUG
+      - EMAIL_HOST
+      - EMAIL_PORT
+      - EMAIL_SSL_CERTFILE
+      - EMAIL_SSL_KEYFILE
+      - EMAIL_USE_SSL
+      - EMAIL_USE_TLS
       - LANGUAGE_CODE
       - TIMEZONE
-      - ALLOWED_HOSTS
      # docker hack to make the web container start after the db container is ready.
      command: bash -c "while ! nc -w 1 -z db 5432; do sleep 0.1; done; ./run.sh;"
      ports:

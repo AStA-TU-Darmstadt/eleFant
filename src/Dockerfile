@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
         # needed to check for database connection:
         netcat
 
+# make nginx log to stdout to make logs accessible via docker logs
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
+
 # start new django project
 RUN django-admin startproject django_project
 # add elefant as django app

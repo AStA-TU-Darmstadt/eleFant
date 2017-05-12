@@ -41,7 +41,6 @@ gulp.task('install-sass-build-deps', function () {
 gulp.task('sass', ['install-sass-build-deps'], function () {
     return gulp.src('elefant/static/elefant/*.scss') // build sass
         .pipe(sass())
-        .pipe(gulp.dest('elefant/static/elefant'))
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(rename({extname: '.min.css'}))
         .pipe(gulp.dest('elefant/static/elefant'));

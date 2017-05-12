@@ -1,6 +1,7 @@
 # server configuration
-example_project
+django_project
 manage.py
+**/secret_key.py
 
 # pycharm stuff
 .idea/**

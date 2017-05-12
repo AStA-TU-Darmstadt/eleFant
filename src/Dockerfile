@@ -7,20 +7,21 @@ WORKDIR /code
 ADD requirements.txt .
 RUN pip install -r requirements.txt
 
-# start new django project and add EleFAnt to it
-RUN django-admin startproject django_project
-ADD elefant django_project/elefant/
-# add custom configuration files
-ADD docker_files/settings.py django_project/django_project/
-ADD docker_files/urls.py django_project/django_project/
-
-# add startup script
-ADD docker_files/run.sh .
-
 # install server dependencies
 RUN apt-get update && apt-get install -y \
         nginx-extras \
-        uwsgi \
-        uwsgi-plugin-python3 \
         # needed to check for database connection:
         netcat
+
+# start new django project
+RUN django-admin startproject django_project
+# add elefant as django app
+ADD elefant django_project/elefant/
+
+# add custom configuration files
+ADD docker_files/django_config django_project/django_project/
+ADD docker_files/uwsgi.ini .
+ADD docker_files/nginx.conf /etc/nginx/sites-enabled
+
+# add startup script
+ADD docker_files/run.sh .

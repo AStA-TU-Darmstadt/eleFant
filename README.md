@@ -18,7 +18,7 @@ Currently the easiest way to get *eleFant* up and running is via `docker-compose
 After installing [docker](https://docs.docker.com/) and [docker-compose](https://docs.docker.com/compose/) you can simply do the following:
 ```bash
 $ git clone git@github.com:AStA-TU-Darmstadt/eleFant.git
-$ cd eleFant
+$ cd eleFant/src
 $ sudo PORT=8000 EMAIL_HOST_USER=myuser EMAIL_HOST_PASSWORD=mypassword ALLOWED_HOSTS=host1.example.com,host2.example.com docker-compose up
 ```
 

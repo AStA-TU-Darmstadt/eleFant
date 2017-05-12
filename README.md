@@ -59,3 +59,6 @@ ALLOWED_HOSTS=myallowedhosts
 
 ## Contributing
 **Code contributions and bug reports are very much appreciated.** If you found a bug please take some time to create a [GitHub Issue](https://github.com/AStA-TU-Darmstadt/EleFAnt/issues). If you want to add new features or improve the code you are welcome to submit a [pull request](https://github.com/AStA-TU-Darmstadt/EleFAnt/pulls).
+
+## Screenshot
+<img src="https://cloud.githubusercontent.com/assets/9250536/26017849/08501d9e-376c-11e7-8bda-04f5f302a351.png" alt="Screenshot"/>

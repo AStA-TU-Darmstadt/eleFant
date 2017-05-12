@@ -1,13 +1,10 @@
-# server configuration
+# local development files
 django_project
 manage.py
 **/secret_key.py
 
 # pycharm stuff
 .idea/**
-
-# bower components
-**/bower_components/**
 
 # yarn stuff
 yarn.lock
@@ -97,7 +94,6 @@ celerybeat-schedule
 *.sage.py
 
 # dotenv
-.env
 
 # virtualenv
 .venv

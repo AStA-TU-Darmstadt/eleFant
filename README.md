@@ -9,7 +9,7 @@ It is written in python using the [Django](https://www.djangoproject.com/) frame
 
 You are welcome to use eleFant for any purpose as long as you follow the terms of the [AGPL License](./LICENSE.md). eleFant can be customized quite easily to manage any kind of application at your university, club or association.
 
-Although the code and all documentation for *elefant* is in English language, the frontend is currently only available in Geman.
+**Although the code and all documentation for *elefant* is written in English language, the frontend is currently only available in Geman.**
 
 ## Installation
 

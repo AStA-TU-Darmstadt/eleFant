@@ -12,6 +12,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Collect static files in a single directory
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
+DEBUG=True
+
 
 def generate_secret_key(path):
     """Generate a new secret_key file for new installations"""

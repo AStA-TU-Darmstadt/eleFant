@@ -1,7 +1,9 @@
  version: '2'
  services:
    db:
-     image: postgres
+     image: docker.io/postgres:latest
+     environment:
+       - POSTGRES_HOST_AUTH_METHOD=trust # FIXME: change this for production use!
    web:
      build: .
      environment:
